@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings | TaskFlow</title>
+
+  <!-- Google Font (Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Our stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dash-body" data-page="settings">
+
+  <!-- ===================== SIDEBAR ===================== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <i class="fa-solid fa-layer-group"></i>
+      <span>TaskFlow</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <p class="nav-heading">Main</p>
+      <a href="dashboard.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+      <a href="dashboard.html#projects" class="nav-link"><i class="fa-solid fa-folder-open"></i> Projects</a>
+
+      <p class="nav-heading">Account</p>
+      <a href="profile.html" class="nav-link"><i class="fa-solid fa-user"></i> Profile</a>
+      <a href="settings.html" class="nav-link active"><i class="fa-solid fa-gear"></i> Settings</a>
+
+      <p class="nav-heading">Info</p>
+      <a href="about.html" class="nav-link"><i class="fa-solid fa-circle-info"></i> About</a>
+    </nav>
+
+    <button class="nav-link logout-link logout-btn">
+      <i class="fa-solid fa-right-from-bracket"></i> Logout
+    </button>
+  </aside>
+
+  <!-- Dark background shown behind the sidebar on mobile -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- ===================== MAIN AREA ===================== -->
+  <div class="main">
+
+    <!-- ===== Top navigation bar ===== -->
+    <header class="topbar">
+      <button class="menu-btn" id="menuBtn" title="Open menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <h1 class="page-title">Settings</h1>
+
+      <div class="topbar-right">
+        <button class="theme-toggle" id="themeToggle" title="Toggle theme"></button>
+        <a href="profile.html" class="profile" title="My profile">
+          <div class="avatar user-avatar">U</div>
+          <div class="profile-info">
+            <strong class="user-name">User</strong>
+            <small class="user-email">user@example.com</small>
+          </div>
+        </a>
+        <button class="btn btn-outline btn-sm logout-btn" title="Logout">
+          <i class="fa-solid fa-right-from-bracket"></i><span class="hide-mobile">Logout</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="settings-grid">
+
+        <!-- ===== Account settings ===== -->
+        <div class="panel">
+          <div class="panel-header">
+            <h3><i class="fa-solid fa-user-gear panel-icon"></i> Account Settings</h3>
+          </div>
+          <div class="setting-row">
+            <div>
+              <strong>Full Name</strong>
+              <p id="settingsName">-</p>
+            </div>
+          </div>
+          <div class="setting-row">
+            <div>
+              <strong>Email / Username</strong>
+              <p id="settingsEmail">-</p>
+            </div>
+          </div>
+          <div class="setting-row">
+            <div>
+              <strong>Member Since</strong>
+              <p id="settingsJoined">-</p>
+            </div>
+            <!-- ?edit=1 makes the Profile page open the edit form automatically -->
+            <a href="profile.html?edit=1" class="btn btn-outline btn-sm">
+              <i class="fa-solid fa-pen"></i> Edit Profile
+            </a>
+          </div>
+        </div>
+
+        <!-- ===== Password settings ===== -->
+        <div class="panel">
+          <div class="panel-header">
+            <h3><i class="fa-solid fa-shield-halved panel-icon"></i> Password Settings</h3>
+          </div>
+
+          <!-- Same form id as on the Profile page, so one JS function handles both -->
+          <form id="passwordForm" novalidate>
+            <div class="form-group">
+              <label for="currentPassword">Current Password</label>
+              <div class="input-icon">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="currentPassword" placeholder="Enter current password">
+                <button type="button" class="toggle-password" data-target="currentPassword" title="Show password">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+              <small class="error" id="currentPasswordError"></small>
+            </div>
+
+            <div class="form-group">
+              <label for="newPassword">New Password</label>
+              <div class="input-icon">
+                <i class="fa-solid fa-key"></i>
+                <input type="password" id="newPassword" placeholder="At least 6 characters">
+                <button type="button" class="toggle-password" data-target="newPassword" title="Show password">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+              <small class="error" id="newPasswordError"></small>
+            </div>
+
+            <div class="form-group">
+              <label for="confirmNewPassword">Confirm New Password</label>
+              <div class="input-icon">
+                <i class="fa-solid fa-key"></i>
+                <input type="password" id="confirmNewPassword" placeholder="Re-enter new password">
+                <button type="button" class="toggle-password" data-target="confirmNewPassword" title="Show password">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+              <small class="error" id="confirmNewPasswordError"></small>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              <i class="fa-solid fa-check"></i> Update Password
+            </button>
+          </form>
+        </div>
+
+        <!-- ===== Appearance settings ===== -->
+        <div class="panel">
+          <div class="panel-header">
+            <h3><i class="fa-solid fa-palette panel-icon"></i> Appearance</h3>
+          </div>
+
+          <div class="setting-row">
+            <div>
+              <strong>Dark Mode</strong>
+              <p>Switch between light and dark theme.</p>
+            </div>
+            <!-- Toggle switch (a styled checkbox) -->
+            <label class="switch">
+              <input type="checkbox" id="darkModeSwitch">
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="setting-row">
+            <div>
+              <strong>Recent Projects</strong>
+              <p>How many projects to show on the dashboard.</p>
+            </div>
+            <select id="recentCountSelect" class="small-select">
+              <option value="3">3 projects</option>
+              <option value="5">5 projects</option>
+              <option value="10">10 projects</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- ===== Session and data ===== -->
+        <div class="panel">
+          <div class="panel-header">
+            <h3><i class="fa-solid fa-database panel-icon"></i> Session &amp; Data</h3>
+          </div>
+
+          <div class="setting-row">
+            <div>
+              <strong>Delete All My Projects</strong>
+              <p>Permanently remove every project in your account.</p>
+            </div>
+            <button class="btn btn-danger btn-sm" id="clearProjectsBtn">
+              <i class="fa-regular fa-trash-can"></i> Delete
+            </button>
+          </div>
+
+          <div class="setting-row">
+            <div>
+              <strong>Logout</strong>
+              <p>Sign out of your account on this browser.</p>
+            </div>
+            <button class="btn btn-outline btn-sm logout-btn">
+              <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Small popup message (toast) -->
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

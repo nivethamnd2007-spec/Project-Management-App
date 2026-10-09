@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | TaskFlow</title>
+
+  <!-- Google Font (Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Our stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-body">
+
+  <!-- Dark / Light theme toggle button -->
+  <button class="theme-toggle floating" id="themeToggle" title="Toggle theme"></button>
+
+  <div class="auth-container">
+
+    <!-- ===== Left side: brand / welcome panel ===== -->
+    <div class="auth-brand">
+      <div class="logo">
+        <i class="fa-solid fa-layer-group"></i>
+        <span>TaskFlow</span>
+      </div>
+      <h1>Start organizing your work today.</h1>
+      <p>Create a free account and keep all your projects, deadlines and progress in one place.</p>
+      <ul class="brand-features">
+        <li><i class="fa-solid fa-circle-check"></i> Free forever</li>
+        <li><i class="fa-solid fa-circle-check"></i> Works in your browser</li>
+        <li><i class="fa-solid fa-circle-check"></i> Light and dark themes</li>
+      </ul>
+    </div>
+
+    <!-- ===== Right side: sign-up form ===== -->
+    <div class="auth-form-box">
+      <h2>Create an account</h2>
+      <p class="subtitle">It only takes a minute</p>
+
+      <!-- Success / error message area -->
+      <div class="alert" id="formMessage"></div>
+
+      <form id="signupForm" novalidate>
+
+        <!-- Full name -->
+        <div class="form-group">
+          <label for="signupName">Full Name</label>
+          <div class="input-icon">
+            <i class="fa-regular fa-user"></i>
+            <input type="text" id="signupName" placeholder="John Doe">
+          </div>
+          <small class="error" id="signupNameError"></small>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="signupEmail">Email Address</label>
+          <div class="input-icon">
+            <i class="fa-regular fa-envelope"></i>
+            <input type="email" id="signupEmail" placeholder="you@example.com">
+          </div>
+          <small class="error" id="signupEmailError"></small>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label for="signupPassword">Password</label>
+          <div class="input-icon">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="signupPassword" placeholder="At least 6 characters">
+            <button type="button" class="toggle-password" data-target="signupPassword" title="Show password">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+          <small class="error" id="signupPasswordError"></small>
+        </div>
+
+        <!-- Confirm password -->
+        <div class="form-group">
+          <label for="signupConfirm">Confirm Password</label>
+          <div class="input-icon">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="signupConfirm" placeholder="Re-enter your password">
+            <button type="button" class="toggle-password" data-target="signupConfirm" title="Show password">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+          <small class="error" id="signupConfirmError"></small>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">
+          <i class="fa-solid fa-user-plus"></i> Sign Up
+        </button>
+      </form>
+
+      <p class="auth-switch">
+        Already have an account? <a href="index.html">Log In</a>
+      </p>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

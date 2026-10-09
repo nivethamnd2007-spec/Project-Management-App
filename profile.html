@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile | TaskFlow</title>
+
+  <!-- Google Font (Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Our stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dash-body" data-page="profile">
+
+  <!-- ===================== SIDEBAR ===================== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <i class="fa-solid fa-layer-group"></i>
+      <span>TaskFlow</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <p class="nav-heading">Main</p>
+      <a href="dashboard.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+      <a href="dashboard.html#projects" class="nav-link"><i class="fa-solid fa-folder-open"></i> Projects</a>
+
+      <p class="nav-heading">Account</p>
+      <a href="profile.html" class="nav-link active"><i class="fa-solid fa-user"></i> Profile</a>
+      <a href="settings.html" class="nav-link"><i class="fa-solid fa-gear"></i> Settings</a>
+
+      <p class="nav-heading">Info</p>
+      <a href="about.html" class="nav-link"><i class="fa-solid fa-circle-info"></i> About</a>
+    </nav>
+
+    <button class="nav-link logout-link logout-btn">
+      <i class="fa-solid fa-right-from-bracket"></i> Logout
+    </button>
+  </aside>
+
+  <!-- Dark background shown behind the sidebar on mobile -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- ===================== MAIN AREA ===================== -->
+  <div class="main">
+
+    <!-- ===== Top navigation bar ===== -->
+    <header class="topbar">
+      <button class="menu-btn" id="menuBtn" title="Open menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <h1 class="page-title">My Profile</h1>
+
+      <div class="topbar-right">
+        <button class="theme-toggle" id="themeToggle" title="Toggle theme"></button>
+        <a href="profile.html" class="profile" title="My profile">
+          <div class="avatar user-avatar">U</div>
+          <div class="profile-info">
+            <strong class="user-name">User</strong>
+            <small class="user-email">user@example.com</small>
+          </div>
+        </a>
+        <button class="btn btn-outline btn-sm logout-btn" title="Logout">
+          <i class="fa-solid fa-right-from-bracket"></i><span class="hide-mobile">Logout</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="content">
+
+      <!-- ===== Profile header card ===== -->
+      <section class="profile-card">
+        <div class="profile-cover"></div>
+        <div class="profile-main">
+          <div class="profile-avatar" id="profileAvatar">U</div>
+          <div class="profile-details">
+            <h2 id="profileName">User</h2>
+            <p><span id="profileRole">Team Member</span> &middot; <span id="profileEmail">user@example.com</span></p>
+          </div>
+          <div class="profile-actions">
+            <button class="btn btn-primary" id="editProfileBtn">
+              <i class="fa-solid fa-pen"></i> Edit Profile
+            </button>
+            <button class="btn btn-outline" id="changePasswordBtn">
+              <i class="fa-solid fa-key"></i> Change Password
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <div class="profile-grid">
+
+        <!-- ===== Personal information ===== -->
+        <div class="panel">
+          <div class="panel-header">
+            <h3>Personal Information</h3>
+          </div>
+          <div class="info-grid">
+            <div class="info-item">
+              <span>Full Name</span>
+              <p id="infoName">-</p>
+            </div>
+            <div class="info-item">
+              <span>Email / Username</span>
+              <p id="infoEmail">-</p>
+            </div>
+            <div class="info-item">
+              <span>Phone</span>
+              <p id="infoPhone">-</p>
+            </div>
+            <div class="info-item">
+              <span>Job Title</span>
+              <p id="infoRole">-</p>
+            </div>
+            <div class="info-item">
+              <span>Location</span>
+              <p id="infoLocation">-</p>
+            </div>
+            <div class="info-item">
+              <span>Member Since</span>
+              <p id="infoJoined">-</p>
+            </div>
+            <div class="info-item full">
+              <span>About Me</span>
+              <p id="infoBio">-</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Project activity ===== -->
+        <div class="panel">
+          <div class="panel-header">
+            <h3>My Activity</h3>
+          </div>
+          <ul class="mini-stats">
+            <li><span><i class="fa-solid fa-folder icon-text-blue"></i> Total Projects</span><strong id="profileTotal">0</strong></li>
+            <li><span><i class="fa-solid fa-spinner icon-text-purple"></i> In Progress</span><strong id="profileProgress">0</strong></li>
+            <li><span><i class="fa-solid fa-circle-check icon-text-green"></i> Completed</span><strong id="profileCompleted">0</strong></li>
+            <li><span><i class="fa-solid fa-hourglass-half icon-text-orange"></i> Pending</span><strong id="profilePending">0</strong></li>
+          </ul>
+          <a href="dashboard.html#projects" class="btn btn-outline btn-block">
+            <i class="fa-solid fa-folder-open"></i> View My Projects
+          </a>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ===================== EDIT PROFILE MODAL ===================== -->
+  <div class="modal" id="profileModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Edit Profile</h3>
+        <button class="close-btn" onclick="closeModal('profileModal')">&times;</button>
+      </div>
+
+      <form id="profileForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="editName">Full Name</label>
+            <input type="text" id="editName">
+            <small class="error" id="editNameError"></small>
+          </div>
+          <div class="form-group">
+            <label for="editEmail">Email</label>
+            <input type="text" id="editEmail">
+            <small class="error" id="editEmailError"></small>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="editPhone">Phone</label>
+            <input type="text" id="editPhone" placeholder="+91 98765 43210">
+            <small class="error" id="editPhoneError"></small>
+          </div>
+          <div class="form-group">
+            <label for="editRole">Job Title</label>
+            <input type="text" id="editRole" placeholder="e.g. Frontend Developer">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="editLocation">Location</label>
+          <input type="text" id="editLocation" placeholder="e.g. Chennai, India">
+        </div>
+
+        <div class="form-group">
+          <label for="editBio">About Me</label>
+          <textarea id="editBio" rows="3" placeholder="A few words about yourself"></textarea>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeModal('profileModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-floppy-disk"></i> Save Changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===================== CHANGE PASSWORD MODAL ===================== -->
+  <div class="modal" id="passwordModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Change Password</h3>
+        <button class="close-btn" onclick="closeModal('passwordModal')">&times;</button>
+      </div>
+
+      <!-- The same form id is used on the Settings page, so one JS function handles both -->
+      <form id="passwordForm" novalidate>
+        <div class="form-group">
+          <label for="currentPassword">Current Password</label>
+          <div class="input-icon">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="currentPassword" placeholder="Enter current password">
+            <button type="button" class="toggle-password" data-target="currentPassword" title="Show password">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+          <small class="error" id="currentPasswordError"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="newPassword">New Password</label>
+          <div class="input-icon">
+            <i class="fa-solid fa-key"></i>
+            <input type="password" id="newPassword" placeholder="At least 6 characters">
+            <button type="button" class="toggle-password" data-target="newPassword" title="Show password">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+          <small class="error" id="newPasswordError"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmNewPassword">Confirm New Password</label>
+          <div class="input-icon">
+            <i class="fa-solid fa-key"></i>
+            <input type="password" id="confirmNewPassword" placeholder="Re-enter new password">
+            <button type="button" class="toggle-password" data-target="confirmNewPassword" title="Show password">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+          <small class="error" id="confirmNewPasswordError"></small>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeModal('passwordModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-check"></i> Update Password
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Small popup message (toast) -->
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

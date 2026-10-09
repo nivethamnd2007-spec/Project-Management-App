@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | TaskFlow</title>
+
+  <!-- Google Font (Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Our stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dash-body" data-page="about">
+
+  <!-- ===================== SIDEBAR ===================== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <i class="fa-solid fa-layer-group"></i>
+      <span>TaskFlow</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <p class="nav-heading">Main</p>
+      <a href="dashboard.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+      <a href="dashboard.html#projects" class="nav-link"><i class="fa-solid fa-folder-open"></i> Projects</a>
+
+      <p class="nav-heading">Account</p>
+      <a href="profile.html" class="nav-link"><i class="fa-solid fa-user"></i> Profile</a>
+      <a href="settings.html" class="nav-link"><i class="fa-solid fa-gear"></i> Settings</a>
+
+      <p class="nav-heading">Info</p>
+      <a href="about.html" class="nav-link active"><i class="fa-solid fa-circle-info"></i> About</a>
+    </nav>
+
+    <button class="nav-link logout-link logout-btn">
+      <i class="fa-solid fa-right-from-bracket"></i> Logout
+    </button>
+  </aside>
+
+  <!-- Dark background shown behind the sidebar on mobile -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- ===================== MAIN AREA ===================== -->
+  <div class="main">
+
+    <!-- ===== Top navigation bar ===== -->
+    <header class="topbar">
+      <button class="menu-btn" id="menuBtn" title="Open menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <h1 class="page-title">About</h1>
+
+      <div class="topbar-right">
+        <button class="theme-toggle" id="themeToggle" title="Toggle theme"></button>
+        <a href="profile.html" class="profile" title="My profile">
+          <div class="avatar user-avatar">U</div>
+          <div class="profile-info">
+            <strong class="user-name">User</strong>
+            <small class="user-email">user@example.com</small>
+          </div>
+        </a>
+        <button class="btn btn-outline btn-sm logout-btn" title="Logout">
+          <i class="fa-solid fa-right-from-bracket"></i><span class="hide-mobile">Logout</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="content">
+
+      <!-- ===== Hero banner ===== -->
+      <section class="about-hero">
+        <span class="hero-badge">Version 1.0</span>
+        <h2>Simple project management for everyone</h2>
+        <p>TaskFlow helps you plan projects, track progress and meet deadlines, all from one clean dashboard that runs right in your browser.</p>
+        <div class="hero-buttons">
+          <a href="dashboard.html" class="btn btn-light"><i class="fa-solid fa-chart-pie"></i> Go to Dashboard</a>
+          <a href="dashboard.html#projects" class="btn btn-ghost"><i class="fa-solid fa-folder-open"></i> View Projects</a>
+        </div>
+      </section>
+
+      <!-- ===== Purpose ===== -->
+      <section class="panel about-block">
+        <h3 class="section-title"><i class="fa-solid fa-bullseye panel-icon"></i> Our Purpose</h3>
+        <p>
+          Many students, freelancers and small teams keep their projects in notes, chats or spreadsheets,
+          and important deadlines get lost. TaskFlow gives them one simple place to store every project,
+          see what is in progress, and know what is finished. It needs no installation, no server and
+          no sign-up fees: your data is saved securely in your own browser using Local Storage.
+        </p>
+      </section>
+
+      <!-- ===== Main features ===== -->
+      <h3 class="section-title">Main Features</h3>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="stat-icon icon-blue"><i class="fa-solid fa-folder-plus"></i></div>
+          <h4>Project Management</h4>
+          <p>Add, view, edit and delete projects with a name, description, dates and status.</p>
+        </div>
+        <div class="feature-card">
+          <div class="stat-icon icon-purple"><i class="fa-solid fa-chart-pie"></i></div>
+          <h4>Live Dashboard</h4>
+          <p>See total, in-progress, completed and pending projects at a glance.</p>
+        </div>
+        <div class="feature-card">
+          <div class="stat-icon icon-green"><i class="fa-solid fa-magnifying-glass"></i></div>
+          <h4>Search &amp; Filter</h4>
+          <p>Find any project instantly by name or description and filter by status.</p>
+        </div>
+        <div class="feature-card">
+          <div class="stat-icon icon-orange"><i class="fa-solid fa-user-shield"></i></div>
+          <h4>User Accounts</h4>
+          <p>Sign up, log in and keep your own private list of projects and profile details.</p>
+        </div>
+        <div class="feature-card">
+          <div class="stat-icon icon-blue"><i class="fa-solid fa-moon"></i></div>
+          <h4>Dark &amp; Light Mode</h4>
+          <p>Pick the theme you like. Your choice is remembered every time you come back.</p>
+        </div>
+        <div class="feature-card">
+          <div class="stat-icon icon-purple"><i class="fa-solid fa-mobile-screen"></i></div>
+          <h4>Fully Responsive</h4>
+          <p>Works smoothly on desktop, tablet and mobile screens.</p>
+        </div>
+      </div>
+
+      <div class="about-two">
+        <!-- ===== How it works ===== -->
+        <section class="panel">
+          <h3 class="section-title"><i class="fa-solid fa-route panel-icon"></i> How It Works</h3>
+          <ol class="steps">
+            <li><span>1</span><div><strong>Create an account</strong><p>Sign up with your name and email, or use the demo admin login.</p></div></li>
+            <li><span>2</span><div><strong>Add your projects</strong><p>Enter the project details, start date and deadline.</p></div></li>
+            <li><span>3</span><div><strong>Track progress</strong><p>Update each project's status and watch your dashboard change.</p></div></li>
+          </ol>
+        </section>
+
+        <!-- ===== Built with ===== -->
+        <section class="panel">
+          <h3 class="section-title"><i class="fa-solid fa-code panel-icon"></i> Built With</h3>
+          <p class="muted-text">TaskFlow is built only with core web technologies. No frameworks and no backend.</p>
+          <div class="chips">
+            <span class="chip"><i class="fa-brands fa-html5"></i> HTML5</span>
+            <span class="chip"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+            <span class="chip"><i class="fa-brands fa-js"></i> JavaScript</span>
+            <span class="chip"><i class="fa-solid fa-database"></i> Local Storage</span>
+            <span class="chip"><i class="fa-brands fa-font-awesome"></i> Font Awesome</span>
+          </div>
+        </section>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

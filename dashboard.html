@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | TaskFlow</title>
+
+  <!-- Google Font (Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Our stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<!-- data-page tells script.js which page this is (and that login is required) -->
+<body class="dash-body" data-page="dashboard">
+
+  <!-- ===================== SIDEBAR ===================== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <i class="fa-solid fa-layer-group"></i>
+      <span>TaskFlow</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <p class="nav-heading">Main</p>
+      <!-- data-section is used to switch sections on this page -->
+      <a href="dashboard.html" class="nav-link active" data-section="dashboardSection">
+        <i class="fa-solid fa-chart-pie"></i> Dashboard
+      </a>
+      <a href="dashboard.html#projects" class="nav-link" data-section="projectsSection">
+        <i class="fa-solid fa-folder-open"></i> Projects
+      </a>
+
+      <p class="nav-heading">Account</p>
+      <a href="profile.html" class="nav-link"><i class="fa-solid fa-user"></i> Profile</a>
+      <a href="settings.html" class="nav-link"><i class="fa-solid fa-gear"></i> Settings</a>
+
+      <p class="nav-heading">Info</p>
+      <a href="about.html" class="nav-link"><i class="fa-solid fa-circle-info"></i> About</a>
+    </nav>
+
+    <button class="nav-link logout-link logout-btn">
+      <i class="fa-solid fa-right-from-bracket"></i> Logout
+    </button>
+  </aside>
+
+  <!-- Dark background shown behind the sidebar on mobile -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- ===================== MAIN AREA ===================== -->
+  <div class="main">
+
+    <!-- ===== Top navigation bar ===== -->
+    <header class="topbar">
+      <button class="menu-btn" id="menuBtn" title="Open menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <h1 class="page-title" id="pageTitle">Dashboard</h1>
+
+      <div class="topbar-right">
+        <button class="theme-toggle" id="themeToggle" title="Toggle theme"></button>
+
+        <!-- User profile (click to open the Profile page) -->
+        <a href="profile.html" class="profile" title="My profile">
+          <div class="avatar user-avatar">U</div>
+          <div class="profile-info">
+            <strong class="user-name">User</strong>
+            <small class="user-email">user@example.com</small>
+          </div>
+        </a>
+
+        <button class="btn btn-outline btn-sm logout-btn" title="Logout">
+          <i class="fa-solid fa-right-from-bracket"></i><span class="hide-mobile">Logout</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="content">
+
+      <!-- ===================== DASHBOARD SECTION ===================== -->
+      <section class="section active" id="dashboardSection">
+
+        <!-- Welcome banner -->
+        <div class="welcome">
+          <div>
+            <h2>Hello, <span id="welcomeName">User</span> 👋</h2>
+            <p>Here is an overview of your projects today.</p>
+          </div>
+          <button class="btn btn-light" onclick="openAddModal()">
+            <i class="fa-solid fa-plus"></i> Add Project
+          </button>
+        </div>
+
+        <!-- Statistic cards -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon icon-blue"><i class="fa-solid fa-folder"></i></div>
+            <div>
+              <p>Total Projects</p>
+              <h3 id="totalCount">0</h3>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon icon-purple"><i class="fa-solid fa-spinner"></i></div>
+            <div>
+              <p>In Progress</p>
+              <h3 id="progressCount">0</h3>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon icon-green"><i class="fa-solid fa-circle-check"></i></div>
+            <div>
+              <p>Completed</p>
+              <h3 id="completedCount">0</h3>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon icon-orange"><i class="fa-solid fa-hourglass-half"></i></div>
+            <div>
+              <p>Pending Tasks</p>
+              <h3 id="pendingCount">0</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent projects table -->
+        <div class="panel">
+          <div class="panel-header">
+            <h3>Recent Projects</h3>
+            <a href="#" id="viewAllLink">View all <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Project</th>
+                  <th>Start Date</th>
+                  <th>Deadline</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="recentTable">
+                <!-- Rows are added by script.js -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Shown when there are no projects -->
+          <div class="empty-state" id="recentEmpty">
+            <i class="fa-regular fa-folder-open"></i>
+            <h4>No projects yet</h4>
+            <p>Click "Add Project" to create your first project.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== PROJECTS SECTION ===================== -->
+      <section class="section" id="projectsSection">
+
+        <!-- Search, filter and add button -->
+        <div class="toolbar">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Search projects...">
+          </div>
+          <select id="statusFilter">
+            <option value="All">All Status</option>
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+          </select>
+          <button class="btn btn-primary" onclick="openAddModal()">
+            <i class="fa-solid fa-plus"></i> Add Project
+          </button>
+        </div>
+
+        <!-- Project cards are added here by script.js -->
+        <div class="projects-grid" id="projectsGrid"></div>
+
+        <!-- Shown when no projects match -->
+        <div class="empty-state" id="projectsEmpty">
+          <i class="fa-regular fa-folder-open"></i>
+          <h4 id="emptyTitle">No projects available</h4>
+          <p id="emptyText">Create a new project to get started.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ===================== ADD / EDIT PROJECT MODAL ===================== -->
+  <div class="modal" id="projectModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modalTitle">Add Project</h3>
+        <button class="close-btn" onclick="closeModal('projectModal')">&times;</button>
+      </div>
+
+      <form id="projectForm" novalidate>
+        <!-- Hidden field: empty when adding, holds the id when editing -->
+        <input type="hidden" id="projectId">
+
+        <div class="form-group">
+          <label for="projectName">Project Name</label>
+          <input type="text" id="projectName" placeholder="e.g. Website Redesign">
+          <small class="error" id="projectNameError"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="projectDesc">Description</label>
+          <textarea id="projectDesc" rows="3" placeholder="Short description of the project"></textarea>
+          <small class="error" id="projectDescError"></small>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="projectStart">Start Date</label>
+            <input type="date" id="projectStart">
+            <small class="error" id="projectStartError"></small>
+          </div>
+          <div class="form-group">
+            <label for="projectDeadline">Deadline</label>
+            <input type="date" id="projectDeadline">
+            <small class="error" id="projectDeadlineError"></small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="projectStatus">Status</label>
+          <select id="projectStatus">
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeModal('projectModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-floppy-disk"></i> Save Project
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===================== VIEW PROJECT MODAL ===================== -->
+  <div class="modal" id="viewModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Project Details</h3>
+        <button class="close-btn" onclick="closeModal('viewModal')">&times;</button>
+      </div>
+      <!-- Details are filled in by script.js -->
+      <div id="viewContent"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" onclick="closeModal('viewModal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Small popup message (toast) -->
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | TaskFlow</title>
+
+  <!-- Google Font (Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Our stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-body">
+
+  <!-- Dark / Light theme toggle button -->
+  <button class="theme-toggle floating" id="themeToggle" title="Toggle theme"></button>
+
+  <div class="auth-container">
+
+    <!-- ===== Left side: brand / welcome panel ===== -->
+    <div class="auth-brand">
+      <div class="logo">
+        <i class="fa-solid fa-layer-group"></i>
+        <span>TaskFlow</span>
+      </div>
+      <h1>Manage your projects with ease.</h1>
+      <p>Plan, track and deliver your work on time. Everything you need in one simple dashboard.</p>
+      <ul class="brand-features">
+        <li><i class="fa-solid fa-circle-check"></i> Track project progress</li>
+        <li><i class="fa-solid fa-circle-check"></i> Never miss a deadline</li>
+        <li><i class="fa-solid fa-circle-check"></i> Simple and fast</li>
+      </ul>
+    </div>
+
+    <!-- ===== Right side: login form ===== -->
+    <div class="auth-form-box">
+      <h2>Welcome back</h2>
+      <p class="subtitle">Log in to continue to your dashboard</p>
+
+      <!-- Demo login details for visitors -->
+      <div class="login-hint">
+        <i class="fa-solid fa-circle-info"></i>
+        <span>Demo login: <strong>admin@123</strong> / <strong>123</strong></span>
+      </div>
+
+      <!-- Success / error message area -->
+      <div class="alert" id="formMessage"></div>
+
+      <form id="loginForm" novalidate>
+
+        <!-- Username or email field -->
+        <div class="form-group">
+          <label for="loginEmail">Username or Email</label>
+          <div class="input-icon">
+            <i class="fa-regular fa-user"></i>
+            <input type="text" id="loginEmail" placeholder="admin@123 or you@example.com">
+          </div>
+          <small class="error" id="loginEmailError"></small>
+        </div>
+
+        <!-- Password field with show/hide button -->
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <div class="input-icon">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="loginPassword" placeholder="Enter your password">
+            <button type="button" class="toggle-password" data-target="loginPassword" title="Show password">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+          <small class="error" id="loginPasswordError"></small>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">
+          <i class="fa-solid fa-right-to-bracket"></i> Log In
+        </button>
+      </form>
+
+      <p class="auth-switch">
+        Don't have an account? <a href="signup.html">Sign Up</a>
+      </p>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
